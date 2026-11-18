@@ -60,6 +60,23 @@ brew install msedit
     cargo build --release
     ```
 
+### Static Linking with musl (Linux)
+
+To produce a fully static, standalone binary with zero runtime library dependencies on Linux:
+
+1. Install the musl target:
+   ```sh
+   rustup target add x86_64-unknown-linux-musl
+   # Or for AArch64 / ARM64:
+   # rustup target add aarch64-unknown-linux-musl
+   ```
+2. Build with the musl target:
+   ```sh
+   cargo build --release --target x86_64-unknown-linux-musl
+   ```
+
+The compiled static binary will be located at `target/x86_64-unknown-linux-musl/release/edit`.
+
 ### Build Configuration
 
 You can set the following environment variables at build-time to configure the build:

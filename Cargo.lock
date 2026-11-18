@@ -255,6 +255,7 @@ dependencies = [
  "criterion",
  "libc",
  "lsh",
+ "regex",
  "toml-span",
  "windows-sys",
  "winresource",

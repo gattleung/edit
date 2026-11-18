@@ -23,6 +23,7 @@ single-threaded = []
 
 [dependencies]
 lsh = { path = "../lsh", version = "0.1", default-features = false, features = ["compiler", "glob"] }
+regex = { version = "1.13", default-features = false, features = ["std", "unicode"] }
 
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"
