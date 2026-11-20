@@ -125,6 +125,7 @@ fn draw_menu_view(ctx: &mut Context, state: &mut State) {
     if let Some(doc) = state.documents.active() {
         let mut tb = doc.buffer.borrow_mut();
         let word_wrap = tb.is_word_wrap_enabled();
+        let line_numbers = tb.is_margin_enabled();
 
         // All values on the statusbar are currently document specific.
         if ctx.menubar_menu_button(loc(LocId::ViewFocusStatusbar), 'S', vk::NULL) {
@@ -138,6 +139,10 @@ fn draw_menu_view(ctx: &mut Context, state: &mut State) {
         }
         if ctx.menubar_menu_checkbox(loc(LocId::ViewWordWrap), 'W', kbmod::ALT | vk::Z, word_wrap) {
             tb.set_word_wrap(!word_wrap);
+            ctx.needs_rerender();
+        }
+        if ctx.menubar_menu_checkbox(loc(LocId::ViewLineNumbers), 'L', vk::NULL, line_numbers) {
+            tb.set_margin_enabled(!line_numbers);
             ctx.needs_rerender();
         }
     }

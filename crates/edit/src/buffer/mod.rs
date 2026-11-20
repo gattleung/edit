@@ -494,6 +494,11 @@ impl TextBuffer {
         self.margin_width
     }
 
+    /// Is the left margin (line numbers) enabled?
+    pub fn is_margin_enabled(&self) -> bool {
+        self.margin_enabled
+    }
+
     /// Is the left margin enabled?
     pub fn set_margin_enabled(&mut self, enabled: bool) -> bool {
         if self.margin_enabled == enabled {
@@ -501,6 +506,7 @@ impl TextBuffer {
         } else {
             self.margin_enabled = enabled;
             self.reflow();
+            self.make_cursor_visible();
             true
         }
     }
